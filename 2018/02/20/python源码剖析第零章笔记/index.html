@@ -91,18 +91,18 @@
 
 
 
-<meta name="description" content="《Python源码剖析》第零章笔记PyString_FromString: Python提供的一个C API，用于从C中的原生字符数组创建出Python的字符串对象。 PyInt_AsLong: 将Python的整数对象转换为C中的int值。 Python内存管理：通常Python的源码中会使用PyObject_GC_New、PyObject_GC_Malloc、PyMem_MALLOC、Py">
+<meta name="description" content="PyString_FromString: Python提供的一个C API，用于从C中的原生字符数组创建出Python的字符串对象。 PyInt_AsLong: 将Python的整数对象转换为C中的int值。 Python内存管理：通常Python的源码中会使用PyObject_GC_New、PyObject_GC_Malloc、PyMem_MALLOC、PyObject_MALLOC等API。只">
 <meta name="keywords" content="python - 动态语言 - 源码剖析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python源码剖析第零章笔记">
 <meta property="og:url" content="http://yoursite.com/2018/02/20/python源码剖析第零章笔记/index.html">
 <meta property="og:site_name" content="茂茂">
-<meta property="og:description" content="《Python源码剖析》第零章笔记PyString_FromString: Python提供的一个C API，用于从C中的原生字符数组创建出Python的字符串对象。 PyInt_AsLong: 将Python的整数对象转换为C中的int值。 Python内存管理：通常Python的源码中会使用PyObject_GC_New、PyObject_GC_Malloc、PyMem_MALLOC、Py">
+<meta property="og:description" content="PyString_FromString: Python提供的一个C API，用于从C中的原生字符数组创建出Python的字符串对象。 PyInt_AsLong: 将Python的整数对象转换为C中的int值。 Python内存管理：通常Python的源码中会使用PyObject_GC_New、PyObject_GC_Malloc、PyMem_MALLOC、PyObject_MALLOC等API。只">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-07T02:28:04.841Z">
+<meta property="og:updated_time" content="2018-03-07T02:46:28.470Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python源码剖析第零章笔记">
-<meta name="twitter:description" content="《Python源码剖析》第零章笔记PyString_FromString: Python提供的一个C API，用于从C中的原生字符数组创建出Python的字符串对象。 PyInt_AsLong: 将Python的整数对象转换为C中的int值。 Python内存管理：通常Python的源码中会使用PyObject_GC_New、PyObject_GC_Malloc、PyMem_MALLOC、Py">
+<meta name="twitter:description" content="PyString_FromString: Python提供的一个C API，用于从C中的原生字符数组创建出Python的字符串对象。 PyInt_AsLong: 将Python的整数对象转换为C中的int值。 Python内存管理：通常Python的源码中会使用PyObject_GC_New、PyObject_GC_Malloc、PyMem_MALLOC、PyObject_MALLOC等API。只">
 
 
 
@@ -415,8 +415,7 @@
       
 
       
-        <a id="more"></a>
-<h2 id="《Python源码剖析》第零章笔记"><a href="#《Python源码剖析》第零章笔记" class="headerlink" title=" 《Python源码剖析》第零章笔记"></a><center> 《Python源码剖析》第零章笔记</center></h2><p>PyString_FromString: Python提供的一个C API，用于从C中的原生字符数组创建出Python的字符串对象。</p>
+        <p>PyString_FromString: Python提供的一个C API，用于从C中的原生字符数组创建出Python的字符串对象。</p>
 <p>PyInt_AsLong: 将Python的整数对象转换为C中的int值。</p>
 <p>Python内存管理：通常Python的源码中会使用PyObject_GC_New、PyObject_GC_Malloc、PyMem_MALLOC、PyObject_MALLOC等API。只要坚持一个原则，即凡是以New结尾的，都以C++中的new操作符视之;凡是以Malloc结尾的，都以C中的malloc操作符视之。</p>
 
@@ -522,17 +521,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/user_img/marlon.jpg"
@@ -605,22 +595,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#《Python源码剖析》第零章笔记"><span class="nav-text"> 《Python源码剖析》第零章笔记</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
