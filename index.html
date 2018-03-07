@@ -449,6 +449,507 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/20/python源码剖析第一章笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="marlon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/user_img/marlon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茂茂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/20/python源码剖析第一章笔记/" itemprop="url">python源码剖析第一章笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-20T14:54:44+08:00">
+                2018-02-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/《Python源码剖析》/" itemprop="url" rel="index">
+                    <span itemprop="name">《Python源码剖析》</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="《python源码剖析》第一章笔记"><a href="#《python源码剖析》第一章笔记" class="headerlink" title="《python源码剖析》第一章笔记"></a><center>《python源码剖析》第一章笔记</center></h2><h3 id="1-1-python内的对象"><a href="#1-1-python内的对象" class="headerlink" title="1.1 python内的对象"></a>1.1 python内的对象</h3><p>  通常的说法是，对象是数据以及基于这些书的操作的集合。在计算机中，一个对象实际上是一片被分配的内存空间，这些内存可能是连续的，也可能是离散的。在Python中，对象就是C中的结构体在堆上申请的一块内存。一个对象一旦被创建，它在内存中的大小就是不变的了。这就意味着那些需要容纳可变长度的对象只能在对象内维护一个指向一块可变大小的内存区域的指针。</p>
+<h4 id="1-1-1-对象机制的基石—-PyObject"><a href="#1-1-1-对象机制的基石—-PyObject" class="headerlink" title="1.1.1 对象机制的基石—-PyObject"></a>1.1.1 对象机制的基石—-PyObject</h4><p>  在python中，所有东西都是对象，而所有对象都有一些相同的内容，这些内容在PyObjject中定义，PyObject是整个Python对象机制的核心。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[object.h]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">object</span>&#123;</span></span><br><span class="line">      PyObject_HEAD</span><br><span class="line">  &#125; PyObject;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[object.h]</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PyObject_HEAD</span></span><br><span class="line"> <span class="keyword">int</span> ob_refcnt;</span><br><span class="line"> <span class="class"><span class="keyword">struct</span> _<span class="title">typeobject</span> *<span class="title">ob_type</span></span></span><br></pre></td></tr></table></figure>
+<p>  在PyObject中定义的内容仅仅是每一个Python对象都必须拥有的一部分内容，我们以整数对象为例，可以看到对象中除PyObject之外的“其他东西”。</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[object.h]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    PyObject_HEAD</span><br><span class="line">    <span class="keyword">long</span> ob_ival;</span><br><span class="line">  &#125;PyIntObject;</span><br></pre></td></tr></table></figure>
+<h4 id="1-1-2-定长对象和变长对象"><a href="#1-1-2-定长对象和变长对象" class="headerlink" title="1.1.2 定长对象和变长对象"></a>1.1.2 定长对象和变长对象</h4><p>  定长对象：我们把整数对象这样不包含可变长度数据的对象称为“定长对象”。</p>
+<p>  变长对象：我们把字符串这样包含可变长度的数据的对象称为“变长对象”。python在PyObject对象之外，还有一个便是这类对象的结构体—PyVarObject。</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[object.h]</span><br><span class="line"></span><br><span class="line">  <span class="meta">#<span class="meta-keyword">define</span> PyObject_VAR_HEAD</span></span><br><span class="line">    PyObject_HEAD</span><br><span class="line">    <span class="keyword">int</span> ob_size;    <span class="comment">/* Number of items in variable part */</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    PyObject_VAR_HEAD</span><br><span class="line">  &#125; PyVarObject;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/20/python源码剖析第零章笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="marlon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/user_img/marlon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茂茂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/20/python源码剖析第零章笔记/" itemprop="url">python源码剖析第一章笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-20T13:03:46+08:00">
+                2018-02-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/《Python源码剖析》/" itemprop="url" rel="index">
+                    <span itemprop="name">《Python源码剖析》</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="《Python源码剖析》第零章笔记"><a href="#《Python源码剖析》第零章笔记" class="headerlink" title=" 《Python源码剖析》第零章笔记"></a><center> 《Python源码剖析》第零章笔记</center></h2><p>PyString_FromString: Python提供的一个C API，用于从C中的原生字符数组创建出Python的字符串对象。</p>
+<p>PyInt_AsLong: 将Python的整数对象转换为C中的int值。</p>
+<p>Python内存管理：通常Python的源码中会使用PyObject_GC_New、PyObject_GC_Malloc、PyMem_MALLOC、PyObject_MALLOC等API。只要坚持一个原则，即凡是以New结尾的，都以C++中的new操作符视之;凡是以Malloc结尾的，都以C中的malloc操作符视之。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/04/HDF5简介/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="marlon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/user_img/marlon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茂茂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/04/HDF5简介/" itemprop="url">HDF5简介</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-04T20:07:21+08:00">
+                2018-02-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>ff</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/03/心电信号质量评估与去噪方法的研究与实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="marlon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/user_img/marlon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茂茂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/03/心电信号质量评估与去噪方法的研究与实现/" itemprop="url">心电信号质量评估与去噪方法的研究与实现</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-03T12:06:31+08:00">
+                2018-02-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -494,7 +995,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -505,7 +1006,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -516,7 +1017,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
