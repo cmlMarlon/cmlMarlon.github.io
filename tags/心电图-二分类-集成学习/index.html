@@ -94,7 +94,7 @@
 <meta name="description" content="学习记录所用">
 <meta property="og:type" content="website">
 <meta property="og:title" content="茂茂">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/心电图-二分类-集成学习/index.html">
 <meta property="og:site_name" content="茂茂">
 <meta property="og:description" content="学习记录所用">
 <meta property="og:locale" content="zh-CN">
@@ -128,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/tags/心电图-二分类-集成学习/"/>
 
 
 
 
 
-  <title>茂茂</title>
+  <title>标签: 心电图 - 二分类 - 集成学习 | 茂茂</title>
   
 
 
@@ -159,9 +159,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -308,148 +306,43 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h1>心电图 - 二分类 - 集成学习<small>标签</small>
+      </h1>
+    </div>
+
     
       
 
-  
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/06/基于集成学习的临床心电图分类算法研究笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="marlon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/user_img/marlon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="茂茂">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/2018/03/06/基于集成学习的临床心电图分类算法研究笔记/" itemprop="url">
+              
+                <span itemprop="name">基于集成学习的临床心电图分类算法研究笔记</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/06/基于集成学习的临床心电图分类算法研究笔记/" itemprop="url">基于集成学习的临床心电图分类算法研究笔记</a></h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-06T21:16:32+08:00">
-                2018-03-06
-              </time>
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-03-06T21:16:32+08:00"
+              content="2018-03-06" >
+          03-06
+        </time>
+      </div>
 
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/《心电图分类》/" itemprop="url" rel="index">
-                    <span itemprop="name">《心电图分类》</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="《基于集成学习的临床心电图分类算法研究》"><a href="#《基于集成学习的临床心电图分类算法研究》" class="headerlink" title="《基于集成学习的临床心电图分类算法研究》"></a><center>《基于集成学习的临床心电图分类算法研究》</center></h2><h3 id="1-问题"><a href="#1-问题" class="headerlink" title="1. 问题"></a>1. 问题</h3><pre><code>对心电图数据进行正常或是异常的二分类。
-</code></pre><h3 id="2-数据集"><a href="#2-数据集" class="headerlink" title="2. 数据集"></a>2. 数据集</h3><pre><code>[CCDD]（http://58.210.56.164:88/ccdd）中的每条心电图记录均来自临床，标准12导联，持续时间10~20s，采样频率500HZ，诊断结果由医生给出。本实验使用CCDD[data944-179130]的数据
-</code></pre><h3 id="3-实验过程"><a href="#3-实验过程" class="headerlink" title="3. 实验过程"></a>3. 实验过程</h3><pre><code>原始心电图分为两路，一路先经过低通滤波和下采样，再输入到由显性训练法所得的 ＬＣＮＮ－Ａ模型中采用多重输出预测法输出决策概率值；另一路则先经过带通滤波和下采样，再输入到由隐性训练法所得的ＬＣＮＮ－Ｂ 模型中，同样采用多重输出预测法输出决策概率值；最后用贝叶斯方法融合两路输出。如图1所示。
-</code></pre><center>图1</center>
-
-<p> <img src="./1.png" height="200" alt="图片名称" align="center"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    </header>
   </article>
 
 
     
-  </section>
+  </div>
 
   
 

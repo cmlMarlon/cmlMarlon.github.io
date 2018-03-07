@@ -75,7 +75,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="心电图 - 二分类 - 集成学习," />
 
 
 
@@ -91,16 +91,20 @@
 
 
 
-<meta name="description" content="学习记录所用">
-<meta property="og:type" content="website">
-<meta property="og:title" content="茂茂">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="《基于集成学习的临床心电图分类算法研究》1. 问题对心电图数据进行正常或是异常的二分类。 2. 数据集[CCDD]（http://58.210.56.164:88/ccdd）中的每条心电图记录均来自临床，标准12导联，持续时间10~20s，采样频率500HZ，诊断结果由医生给出。本实验使用CCDD[data944-179130]的数据 3. 实验过程原始心电图分为两路，一路先经过低通滤波和下采样，">
+<meta name="keywords" content="心电图 - 二分类 - 集成学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于集成学习的临床心电图分类算法研究笔记">
+<meta property="og:url" content="http://yoursite.com/2018/03/06/基于集成学习的临床心电图分类算法研究笔记/index.html">
 <meta property="og:site_name" content="茂茂">
-<meta property="og:description" content="学习记录所用">
+<meta property="og:description" content="《基于集成学习的临床心电图分类算法研究》1. 问题对心电图数据进行正常或是异常的二分类。 2. 数据集[CCDD]（http://58.210.56.164:88/ccdd）中的每条心电图记录均来自临床，标准12导联，持续时间10~20s，采样频率500HZ，诊断结果由医生给出。本实验使用CCDD[data944-179130]的数据 3. 实验过程原始心电图分为两路，一路先经过低通滤波和下采样，">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/03/06/基于集成学习的临床心电图分类算法研究笔记/1.png">
+<meta property="og:updated_time" content="2018-03-06T15:28:19.169Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="茂茂">
-<meta name="twitter:description" content="学习记录所用">
+<meta name="twitter:title" content="基于集成学习的临床心电图分类算法研究笔记">
+<meta name="twitter:description" content="《基于集成学习的临床心电图分类算法研究》1. 问题对心电图数据进行正常或是异常的二分类。 2. 数据集[CCDD]（http://58.210.56.164:88/ccdd）中的每条心电图记录均来自临床，标准12导联，持续时间10~20s，采样频率500HZ，诊断结果由医生给出。本实验使用CCDD[data944-179130]的数据 3. 实验过程原始心电图分为两路，一路先经过低通滤波和下采样，">
+<meta name="twitter:image" content="http://yoursite.com/2018/03/06/基于集成学习的临床心电图分类算法研究笔记/1.png">
 
 
 
@@ -128,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/06/基于集成学习的临床心电图分类算法研究笔记/"/>
 
 
 
 
 
-  <title>茂茂</title>
+  <title>基于集成学习的临床心电图分类算法研究笔记 | 茂茂</title>
   
 
 
@@ -159,9 +163,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -308,9 +310,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -336,9 +338,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/06/基于集成学习的临床心电图分类算法研究笔记/" itemprop="url">基于集成学习的临床心电图分类算法研究笔记</a></h1>
+          <h1 class="post-title" itemprop="name headline">基于集成学习的临床心电图分类算法研究笔记</h1>
         
 
         <div class="post-meta">
@@ -386,6 +386,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2018/03/06/基于集成学习的临床心电图分类算法研究笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -407,51 +417,63 @@
       
 
       
-        
-          
-            <h2 id="《基于集成学习的临床心电图分类算法研究》"><a href="#《基于集成学习的临床心电图分类算法研究》" class="headerlink" title="《基于集成学习的临床心电图分类算法研究》"></a><center>《基于集成学习的临床心电图分类算法研究》</center></h2><h3 id="1-问题"><a href="#1-问题" class="headerlink" title="1. 问题"></a>1. 问题</h3><pre><code>对心电图数据进行正常或是异常的二分类。
+        <h2 id="《基于集成学习的临床心电图分类算法研究》"><a href="#《基于集成学习的临床心电图分类算法研究》" class="headerlink" title="《基于集成学习的临床心电图分类算法研究》"></a><center>《基于集成学习的临床心电图分类算法研究》</center></h2><h3 id="1-问题"><a href="#1-问题" class="headerlink" title="1. 问题"></a>1. 问题</h3><pre><code>对心电图数据进行正常或是异常的二分类。
 </code></pre><h3 id="2-数据集"><a href="#2-数据集" class="headerlink" title="2. 数据集"></a>2. 数据集</h3><pre><code>[CCDD]（http://58.210.56.164:88/ccdd）中的每条心电图记录均来自临床，标准12导联，持续时间10~20s，采样频率500HZ，诊断结果由医生给出。本实验使用CCDD[data944-179130]的数据
 </code></pre><h3 id="3-实验过程"><a href="#3-实验过程" class="headerlink" title="3. 实验过程"></a>3. 实验过程</h3><pre><code>原始心电图分为两路，一路先经过低通滤波和下采样，再输入到由显性训练法所得的 ＬＣＮＮ－Ａ模型中采用多重输出预测法输出决策概率值；另一路则先经过带通滤波和下采样，再输入到由隐性训练法所得的ＬＣＮＮ－Ｂ 模型中，同样采用多重输出预测法输出决策概率值；最后用贝叶斯方法融合两路输出。如图1所示。
 </code></pre><center>图1</center>
 
 <p> <img src="./1.png" height="200" alt="图片名称" align="center"></p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/心电图-二分类-集成学习/" rel="tag"># 心电图 - 二分类 - 集成学习</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -459,6 +481,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
 
         </div>
         
@@ -478,8 +506,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/user_img/marlon.jpg"
@@ -552,6 +589,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#《基于集成学习的临床心电图分类算法研究》"><span class="nav-number">1.</span> <span class="nav-text">《基于集成学习的临床心电图分类算法研究》</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-问题"><span class="nav-number">1.1.</span> <span class="nav-text">1. 问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-数据集"><span class="nav-number">1.2.</span> <span class="nav-text">2. 数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-实验过程"><span class="nav-number">1.3.</span> <span class="nav-text">3. 实验过程</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -672,10 +725,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
