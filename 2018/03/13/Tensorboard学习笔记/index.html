@@ -75,7 +75,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="python,动态语言,源码剖析," />
+  <meta name="keywords" content="tensorboard," />
 
 
 
@@ -91,18 +91,23 @@
 
 
 
-<meta name="description" content="PyString_FromString: Python提供的一个C API，用于从C中的原生字符数组创建出Python的字符串对象。 PyInt_AsLong: 将Python的整数对象转换为C中的int值。 Python内存管理：通常Python的源码中会使用PyObject_GC_New、PyObject_GC_Malloc、PyMem_MALLOC、PyObject_MALLOC等API。只">
-<meta name="keywords" content="python,动态语言,源码剖析">
+<meta name="description" content="1.简介  为了更方便 TensorFlow 程序的理解、调试与优化，Google发布了一套叫做 TensorBoard 的可视化工具。程序员可以用TensorBoard 来展现构建的TensorFlow 图像，绘制图像生成的定量指标图以及附加数据。 2. 数据序列化  Tensorboard可以记录与展示以下数据形式：  * 标量Scalars  * 图片Images  * 音频Audio  *">
+<meta name="keywords" content="tensorboard">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python源码剖析第零章笔记">
-<meta property="og:url" content="http://yoursite.com/2018/02/20/python源码剖析第零章笔记/index.html">
+<meta property="og:title" content="Tensorboard学习笔记">
+<meta property="og:url" content="http://yoursite.com/2018/03/13/Tensorboard学习笔记/index.html">
 <meta property="og:site_name" content="茂茂">
-<meta property="og:description" content="PyString_FromString: Python提供的一个C API，用于从C中的原生字符数组创建出Python的字符串对象。 PyInt_AsLong: 将Python的整数对象转换为C中的int值。 Python内存管理：通常Python的源码中会使用PyObject_GC_New、PyObject_GC_Malloc、PyMem_MALLOC、PyObject_MALLOC等API。只">
+<meta property="og:description" content="1.简介  为了更方便 TensorFlow 程序的理解、调试与优化，Google发布了一套叫做 TensorBoard 的可视化工具。程序员可以用TensorBoard 来展现构建的TensorFlow 图像，绘制图像生成的定量指标图以及附加数据。 2. 数据序列化  Tensorboard可以记录与展示以下数据形式：  * 标量Scalars  * 图片Images  * 音频Audio  *">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-13T05:46:39.274Z">
+<meta property="og:image" content="http://yoursite.com/2018/03/13/Tensorboard学习笔记/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/13/Tensorboard学习笔记/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/13/Tensorboard学习笔记/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/13/Tensorboard学习笔记/4.png">
+<meta property="og:updated_time" content="2018-03-13T06:35:33.242Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python源码剖析第零章笔记">
-<meta name="twitter:description" content="PyString_FromString: Python提供的一个C API，用于从C中的原生字符数组创建出Python的字符串对象。 PyInt_AsLong: 将Python的整数对象转换为C中的int值。 Python内存管理：通常Python的源码中会使用PyObject_GC_New、PyObject_GC_Malloc、PyMem_MALLOC、PyObject_MALLOC等API。只">
+<meta name="twitter:title" content="Tensorboard学习笔记">
+<meta name="twitter:description" content="1.简介  为了更方便 TensorFlow 程序的理解、调试与优化，Google发布了一套叫做 TensorBoard 的可视化工具。程序员可以用TensorBoard 来展现构建的TensorFlow 图像，绘制图像生成的定量指标图以及附加数据。 2. 数据序列化  Tensorboard可以记录与展示以下数据形式：  * 标量Scalars  * 图片Images  * 音频Audio  *">
+<meta name="twitter:image" content="http://yoursite.com/2018/03/13/Tensorboard学习笔记/1.png">
 
 
 
@@ -130,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/02/20/python源码剖析第零章笔记/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/13/Tensorboard学习笔记/"/>
 
 
 
 
 
-  <title>python源码剖析第零章笔记 | 茂茂</title>
+  <title>Tensorboard学习笔记 | 茂茂</title>
   
 
 
@@ -319,7 +324,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/20/python源码剖析第零章笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/13/Tensorboard学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="marlon">
@@ -336,7 +341,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python源码剖析第零章笔记</h1>
+          <h1 class="post-title" itemprop="name headline">Tensorboard学习笔记</h1>
         
 
         <div class="post-meta">
@@ -348,8 +353,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-20T13:03:46+08:00">
-                2018-02-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T13:44:08+08:00">
+                2018-03-13
               </time>
             
 
@@ -371,8 +376,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/《Python源码剖析》/" itemprop="url" rel="index">
-                    <span itemprop="name">《Python源码剖析》</span>
+                  <a href="/categories/《Tensorflow》/" itemprop="url" rel="index">
+                    <span itemprop="name">《Tensorflow》</span>
                   </a>
                 </span>
 
@@ -389,7 +394,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2018/02/20/python源码剖析第零章笔记/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2018/03/13/Tensorboard学习笔记/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -415,9 +420,24 @@
       
 
       
-        <p>PyString_FromString: Python提供的一个C API，用于从C中的原生字符数组创建出Python的字符串对象。</p>
-<p>PyInt_AsLong: 将Python的整数对象转换为C中的int值。</p>
-<p>Python内存管理：通常Python的源码中会使用PyObject_GC_New、PyObject_GC_Malloc、PyMem_MALLOC、PyObject_MALLOC等API。只要坚持一个原则，即凡是以New结尾的，都以C++中的new操作符视之;凡是以Malloc结尾的，都以C中的malloc操作符视之。</p>
+        <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>  为了更方便 TensorFlow 程序的理解、调试与优化，Google发布了一套叫做 TensorBoard 的可视化工具。程序员可以用TensorBoard 来展现构建的TensorFlow 图像，绘制图像生成的定量指标图以及附加数据。</p>
+<h2 id="2-数据序列化"><a href="#2-数据序列化" class="headerlink" title="2. 数据序列化"></a>2. 数据序列化</h2><p>  Tensorboard可以记录与展示以下数据形式： </p>
+<pre><code>* 标量Scalars 
+* 图片Images 
+* 音频Audio 
+* 计算图Graph 
+* 数据分布Distribution 
+* 直方图Histograms 
+* 嵌入向量Embeddings
+</code></pre><p>  数据序列化常用函数如下：</p>
+<pre><code>* tf.name_scope()：为Graph中的Tensor添加层级，TensorBoard会按照代码指定的层级进行展示，初始状态下只绘制最高层级的效果，点击后可展开层级看到下一层的细节。
+* tf.summary.scalar()：添加标量统计结果。
+* tf.summary.histogram()：添加任意shape的Tensor，统计这个Tensor的取值分布。
+* tf.summary.merge_all()：添加一个操作，代表执行所有summary操作，这样可以避免人工执行每一个summary op。
+* tf.summary.FileWrite：用于将Summary写入磁盘，需要制定存储路径logdir，如果传递了Graph对象，则在Graph Visualization会显示Tensor Shape Information。执行summary op后，将返回结果传递给add_summary()方法即可。
+</code></pre><p>  可视化完整的代码实例如下：<br>  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dataset</span><span class="params">()</span>:</span></span><br><span class="line">    x_data = np.linspace(<span class="number">-1</span>, <span class="number">1</span>, <span class="number">300</span>, dtype=np.float32)[:, np.newaxis]</span><br><span class="line">    noise = np.random.normal(<span class="number">0</span>, <span class="number">0.05</span>, x_data.shape).astype(np.float32)</span><br><span class="line">    y_data = np.square(x_data) - <span class="number">0.5</span> + noise</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> x_data, y_data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_layer</span><span class="params">(inputs, in_size, out_size, n_layer, activation_function=None)</span>:</span></span><br><span class="line">    layer_name = <span class="string">"layer%s"</span> % n_layer</span><br><span class="line">    <span class="keyword">with</span> tf.name_scope(layer_name):</span><br><span class="line">        Weights = tf.Variable(tf.random_normal([in_size, out_size]), name=<span class="string">"W"</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 可视化图表的名字为layer_name/weights，因为前面有个layer_name命名空间</span></span><br><span class="line">        tf.summary.histogram(<span class="string">"/weights"</span>, Weights)</span><br><span class="line">        biases = tf.Variable(tf.zeros([<span class="number">1</span>, out_size]) + <span class="number">0.1</span>, name=<span class="string">"b"</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 可视化图表的名字为layer_name/biases，因为前面有个layer_name命名空间</span></span><br><span class="line">        tf.summary.histogram(<span class="string">"/biases"</span>, biases)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">with</span> tf.name_scope(<span class="string">'Wx_plus_b'</span>):</span><br><span class="line">            Wx_plus_b = tf.add(tf.matmul(inputs, Weights), biases)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> activation_function <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            outputs = Wx_plus_b</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            outputs = activation_function(Wx_plus_b)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 可视化图表的名字为layer_name/outputs，因为前面有个layer_name命名空间</span></span><br><span class="line">        tf.summary.histogram(<span class="string">"/outputs"</span>, outputs)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> outputs</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_nn</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">with</span> tf.name_scope(<span class="string">'inputs'</span>):</span><br><span class="line">        xs = tf.placeholder(tf.float32, [<span class="keyword">None</span>, <span class="number">1</span>], name=<span class="string">'x_input'</span>)</span><br><span class="line">        ys = tf.placeholder(tf.float32, [<span class="keyword">None</span>, <span class="number">1</span>], name=<span class="string">'y_input'</span>)</span><br><span class="line"></span><br><span class="line">    l1 = add_layer(xs, <span class="number">1</span>, <span class="number">10</span>, n_layer=<span class="number">1</span>, activation_function=tf.nn.relu)</span><br><span class="line">    prediction = add_layer(l1, <span class="number">10</span>, <span class="number">1</span>, n_layer=<span class="number">2</span>, activation_function=<span class="keyword">None</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> tf.name_scope(<span class="string">"loss"</span>):</span><br><span class="line">        loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys - prediction), reduction_indices=[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 可视化图表的名字为loss/loss，因为前面有个loss命名空间</span></span><br><span class="line">        tf.summary.scalar(<span class="string">"loss"</span>, loss)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> tf.name_scope(<span class="string">'train'</span>):</span><br><span class="line">        train_step = tf.train.GradientDescentOptimizer(<span class="number">0.1</span>).minimize(loss)</span><br><span class="line"></span><br><span class="line">    merged = tf.summary.merge_all()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> xs, ys, train_step, merged</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line"></span><br><span class="line">    x_data, y_data = dataset()      <span class="comment"># 输入数据</span></span><br><span class="line">    xs, ys, train_step, merged = build_nn()     <span class="comment"># 构建网络</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">        sess.run(tf.global_variables_initializer())     <span class="comment"># 初始化所有变量</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 保存图</span></span><br><span class="line">        writer = tf.summary.FileWriter(<span class="string">r"C:\Users\marlon\Desktop\logs"</span>, sess.graph)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 训练网络</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000</span>):</span><br><span class="line">            sess.run(train_step, feed_dict=&#123;xs: x_data, ys: y_data&#125;)</span><br><span class="line">            <span class="keyword">if</span> i % <span class="number">50</span> == <span class="number">0</span>:</span><br><span class="line">                rs = sess.run(merged, feed_dict=&#123;xs: x_data, ys: y_data&#125;)</span><br><span class="line">                writer.add_summary(rs, i)       <span class="comment"># 添加训练过程中的数据</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="3-可视化结果"><a href="#3-可视化结果" class="headerlink" title="3. 可视化结果"></a>3. 可视化结果</h2><p>  可视化结果如下图所示：<br>  <center>Scalars图</center><br>  <img src="/2018/03/13/Tensorboard学习笔记/1.png" alt=""><br>  <center>Graphs图</center><br>  <img src="/2018/03/13/Tensorboard学习笔记/2.png" alt=""><br>  <center>Distributions图</center><br>  <img src="/2018/03/13/Tensorboard学习笔记/3.png" alt=""><br>  <center>Histograms图</center><br>  <img src="/2018/03/13/Tensorboard学习笔记/4.png" alt=""></p>
+<h2 id="4-启动Tensorboard"><a href="#4-启动Tensorboard" class="headerlink" title="4. 启动Tensorboard"></a>4. 启动Tensorboard</h2><p>  windows下启动Tensorboard的方法如下。 打开cmd控制台， 输入如下代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensorboard --logdir=<span class="string">"保存的图的路径"</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -447,11 +467,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
-          
-            <a href="/tags/动态语言/" rel="tag"># 动态语言</a>
-          
-            <a href="/tags/源码剖析/" rel="tag"># 源码剖析</a>
+            <a href="/tags/tensorboard/" rel="tag"># tensorboard</a>
           
         </div>
       
@@ -464,8 +480,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/04/HDF5简介/" rel="next" title="HDF5简介">
-                <i class="fa fa-chevron-left"></i> HDF5简介
+              <a href="/2018/03/06/基于集成学习的临床心电图分类算法研究笔记/" rel="next" title="基于集成学习的临床心电图分类算法研究笔记">
+                <i class="fa fa-chevron-left"></i> 基于集成学习的临床心电图分类算法研究笔记
               </a>
             
           </div>
@@ -473,10 +489,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/20/python源码剖析第一章笔记/" rel="prev" title="python源码剖析第一章笔记">
-                python源码剖析第一章笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -525,8 +537,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/user_img/marlon.jpg"
@@ -599,6 +620,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-简介"><span class="nav-text">1.简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-数据序列化"><span class="nav-text">2. 数据序列化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-可视化结果"><span class="nav-text">3. 可视化结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-启动Tensorboard"><span class="nav-text">4. 启动Tensorboard</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
