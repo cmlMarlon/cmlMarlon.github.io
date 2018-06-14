@@ -1,0 +1,1178 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="1. 简介2. NumPy2.1 NumPy Arrays  NumPy是python科学计算的基础包。主要的两个数据结构是ndarray和maxtrix。其中ndarray支持元素级的数学运算，maxtrix支持线性代数中常见的矩阵运算。ndarray和python list很像，但是其中的列元素类型必须一致，常用的有floats，integers或者strings。同时，其处理数值计算的速度比">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《SciPy and NumPy》学习笔记">
+<meta property="og:url" content="http://yoursite.com/2018/03/29/《SciPy-and-NumPy》学习笔记/index.html">
+<meta property="og:site_name" content="茂茂">
+<meta property="og:description" content="1. 简介2. NumPy2.1 NumPy Arrays  NumPy是python科学计算的基础包。主要的两个数据结构是ndarray和maxtrix。其中ndarray支持元素级的数学运算，maxtrix支持线性代数中常见的矩阵运算。ndarray和python list很像，但是其中的列元素类型必须一致，常用的有floats，integers或者strings。同时，其处理数值计算的速度比">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/03/29/《SciPy-and-NumPy》学习笔记/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/29/《SciPy-and-NumPy》学习笔记/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/29/《SciPy-and-NumPy》学习笔记/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/29/《SciPy-and-NumPy》学习笔记/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/29/《SciPy-and-NumPy》学习笔记/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/29/《SciPy-and-NumPy》学习笔记/6.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/29/《SciPy-and-NumPy》学习笔记/7.png">
+<meta property="og:updated_time" content="2018-04-24T16:04:18.221Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《SciPy and NumPy》学习笔记">
+<meta name="twitter:description" content="1. 简介2. NumPy2.1 NumPy Arrays  NumPy是python科学计算的基础包。主要的两个数据结构是ndarray和maxtrix。其中ndarray支持元素级的数学运算，maxtrix支持线性代数中常见的矩阵运算。ndarray和python list很像，但是其中的列元素类型必须一致，常用的有floats，integers或者strings。同时，其处理数值计算的速度比">
+<meta name="twitter:image" content="http://yoursite.com/2018/03/29/《SciPy-and-NumPy》学习笔记/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/29/《SciPy-and-NumPy》学习笔记/"/>
+
+
+
+
+
+  <title>《SciPy and NumPy》学习笔记 | 茂茂</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">茂茂</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">欲穷千里目，更上一层楼</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/29/《SciPy-and-NumPy》学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="marlon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/user_img/marlon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茂茂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《SciPy and NumPy》学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-29T14:45:03+08:00">
+                2018-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2018/03/29/《SciPy-and-NumPy》学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><h2 id="2-NumPy"><a href="#2-NumPy" class="headerlink" title="2. NumPy"></a>2. NumPy</h2><h3 id="2-1-NumPy-Arrays"><a href="#2-1-NumPy-Arrays" class="headerlink" title="2.1 NumPy Arrays"></a>2.1 NumPy Arrays</h3><p>  NumPy是python科学计算的基础包。主要的两个数据结构是ndarray和maxtrix。其中ndarray支持元素级的数学运算，maxtrix支持线性代数中常见的矩阵运算。ndarray和python list很像，但是其中的<font color="#dd0000"><strong>列元素</strong></font>类型必须一致，常用的有floats，integers或者strings。同时，其处理数值计算的速度比用python list对象迭代处理要快得多。在IPython中，python list和NumPy ndarray对元素同时乘以一个数值的时间开销对比示列如下：</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create an array with 10^7 elements.</span></span><br><span class="line">arr = np.arange(<span class="number">1e7</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Converting ndarray to list</span></span><br><span class="line">larr = arr.tolist()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Lists cannot by default broadcast,</span></span><br><span class="line"><span class="comment"># so a function is coded to emulate</span></span><br><span class="line"><span class="comment"># what an ndarray can do.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">list_times</span><span class="params">(alist, scalar)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i, val <span class="keyword">in</span> enumerate(alist):</span><br><span class="line">        alist[i] = val * scalar</span><br><span class="line">    <span class="keyword">return</span> alist</span><br><span class="line"></span><br><span class="line"><span class="comment"># Using IPython's magic timeit command</span></span><br><span class="line">timeit arr * <span class="number">1.1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span> loops, best of <span class="number">3</span>: <span class="number">76.9</span> ms per loop</span><br><span class="line"></span><br><span class="line">timeit list_times(larr, <span class="number">1.1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span> loops, best of <span class="number">3</span>: <span class="number">2.03</span> s per loop</span><br></pre></td></tr></table></figure>
+<p>  从中可见，对1百万个元素同时乘以相同的数值，Python list的时间开销是NumPy Arrays的25倍多。所以当需要进行一些数值处理时，我们最好选择NumPy Arrays。</p>
+<p>  与ndarray对象不同的是，matrix对象只能是<font color="#dd0000"><strong>二维</strong></font>的。这就意味着，试图构建一个三维或者更高维的矩阵是不可能的。其实例如下：</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Creating a 3D numpy array</span></span><br><span class="line">arr = np.zeros((<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>))</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Trying to convert array to a matrix, which will not work</span></span><br><span class="line"></span><br><span class="line">mat = np.matrix(arr)</span><br><span class="line"><span class="comment"># "ValueError: shape too large to be a matrix."</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-1-1-NumPy-Array-和-数据类型"><a href="#2-1-1-NumPy-Array-和-数据类型" class="headerlink" title="2.1.1 NumPy Array 和 数据类型"></a>2.1.1 NumPy Array 和 数据类型</h4><p>  有很多方式可以创建NumPy数组，如下所示：</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># First we create a list and then</span></span><br><span class="line"><span class="comment"># wrap it with the np.array() function.</span></span><br><span class="line">alist = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">arr = np.array(alist)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Creating an array of zeros with five elements</span></span><br><span class="line">arr = np.zeros(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># What if we want to create an array going from 0 to 100?</span></span><br><span class="line">arr = np.arange(<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Or 10 to 100?</span></span><br><span class="line">arr = np.arange(<span class="number">10</span>,<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># If you want 100 steps from 0 to 1...</span></span><br><span class="line">arr = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Or if you want to generate an array from 1 to 10</span></span><br><span class="line"><span class="comment"># in log10 space in 100 steps...</span></span><br><span class="line">arr = np.logspace(<span class="number">0</span>, <span class="number">1</span>, <span class="number">100</span>, base=<span class="number">10.0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Creating a 5x5 array of zeros (an image)</span></span><br><span class="line">image = np.zeros((<span class="number">5</span>,<span class="number">5</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Creating a 5x5x5 cube of 1's</span></span><br><span class="line"><span class="comment"># The astype() method sets the array with integer elements.</span></span><br><span class="line">cube = np.zeros((<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>)).astype(int) + <span class="number">1</span></span><br><span class="line">   </span><br><span class="line"><span class="comment"># Or even simpler with 16-bit floating-point precision...</span></span><br><span class="line">cube = np.ones((<span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>)).astype(np.float16)</span><br></pre></td></tr></table></figure>
+<p>  当创建NumPy Arrays数组时，NumPy默认会采用本机的python环境设置其元素的大小。比如，你是python 64位的环境，则NumPy Arrays数组元素的默认大小是64位的精度。这个有时是不必要的，所以你可以通过dtype（int , numpy.float16 , numpy.float32 , or numpy.float64）指定元素的精度。如下：</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Array of zero integers</span></span><br><span class="line">arr = np.zeros(<span class="number">2</span>, dtype=int)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Array of zero floats</span></span><br><span class="line">arr = np.zeros(<span class="number">2</span>, dtype=np.float32)</span><br></pre></td></tr></table></figure>
+<p>  对于NumPy Arrays，我们可以随意的reshape它，或者flat它。如下：<br>  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Creating an array with elements from 0 to 999</span></span><br><span class="line">arr1d = np.arange(<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Now reshaping the array to a 10x10x10 3D array</span></span><br><span class="line">arr3d = arr1d.reshape((<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># The reshape command can alternatively be called this way</span></span><br><span class="line">arr3d = np.reshape(arr1s, (<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Inversely, we can flatten arrays</span></span><br><span class="line">arr4d = np.zeros((<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>))</span><br><span class="line">arr1d = arr4d.ravel()</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> arr1d.shape</span><br><span class="line">(<span class="number">1000</span>,)</span><br></pre></td></tr></table></figure></p>
+  <font color="#dd0000"><strong>注意： reshape arrays时， 你所得到的结果只是同一个arrays的不同shape的视图， 而不是新创建另外一个数组。当你对arr1d的第一个元素修改为1时，arr3d中的第一个元素也会自动变为1.为了避免这种情况，你可以使用numpy.copy()函数。这个函数会重新创建一个数组以避免该情况。</strong></font>
+
+<h4 id="2-1-2-Record-Arrays"><a href="#2-1-2-Record-Arrays" class="headerlink" title="2.1.2 Record Arrays"></a>2.1.2 Record Arrays</h4><p>NumPy Arrays中的元素一般是integers或者floats， 但是有时候我们也可以在不同列存储不同的数据类型。这就是numpy.recarray.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Creating an array of zeros and defining column types</span></span><br><span class="line">recarr = np.zeros((<span class="number">2</span>,), dtype=(<span class="string">'i4,f4,a10'</span>))</span><br><span class="line">toadd = [(<span class="number">1</span>,<span class="number">2.</span>,<span class="string">'Hello'</span>),(<span class="number">2</span>,<span class="number">3.</span>,<span class="string">"World"</span>)]</span><br><span class="line">recarr[:] = toadd</span><br></pre></td></tr></table></figure>
+<p>上面的代码中，<font color="#dd0000"><strong>i4</strong></font>对应32-bit的整数，<font color="#dd0000"><strong>f4</strong></font>对应32位的浮点数， <font color="#dd0000"><strong>a10</strong></font>对应长度为10的字符串。我们可以使用<font color="#dd0000"><strong>zip()</strong></font>函数给recarray数组填充值。如下所示：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Creating an array of zeros and defining column types</span></span><br><span class="line">recarr = np.zeros((<span class="number">2</span>,), dtype=(<span class="string">'i4,f4,a10'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Now creating the columns we want to put</span></span><br><span class="line"><span class="comment"># in the recarray</span></span><br><span class="line">col1 = np.arange(<span class="number">2</span>) + <span class="number">1</span></span><br><span class="line">col2 = np.arange(<span class="number">2</span>, dtype=np.float32)</span><br><span class="line">col3 = [<span class="string">'Hello'</span>, <span class="string">'World'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Here we create a list of tuples that is</span></span><br><span class="line"><span class="comment"># identical to the previous toadd list.</span></span><br><span class="line">toadd = zip(col1, col2, col3)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Assigning values to recarr</span></span><br><span class="line">recarr[:] = toadd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Assigning names to each column, which</span></span><br><span class="line"><span class="comment"># are now by default called 'f0', 'f1', and 'f2'.</span></span><br><span class="line">recarr.dtype.names = (<span class="string">'Integers'</span> , <span class="string">'Floats'</span>, <span class="string">'Strings'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># If we want to access one of the columns by its name, we</span></span><br><span class="line"><span class="comment"># can do the following.</span></span><br><span class="line">recarr(<span class="string">'Integers'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># array([1, 2], dtype=int32)</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="2-1-3-Indexing-and-Slicing"><a href="#2-1-3-Indexing-and-Slicing" class="headerlink" title="2.1.3 Indexing and Slicing"></a>2.1.3 Indexing and Slicing</h4><p>NumPy Array的索引的使用比Python list索引的使用更方便。其使用如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Converting the list defined above into an array</span></span><br><span class="line">arr = np.array(alist)</span><br><span class="line"></span><br><span class="line"><span class="comment"># To return the (0,1) element we use ...</span></span><br><span class="line">arr[<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Now to access the last column, we simply use ...</span></span><br><span class="line">arr[:,<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Accessing the columns is achieved in the same way,</span></span><br><span class="line"><span class="comment"># which is the bottom row.</span></span><br><span class="line">arr[<span class="number">1</span>,:]</span><br></pre></td></tr></table></figure></p>
+<p>当我们需要对NumPy Arrays进行条件索引时，我们可以使用<font color="#dd0000"><strong>numpy.where()</strong></font>。如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Creating an array</span></span><br><span class="line">arr = np.arange(<span class="number">5</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Creating the index array</span></span><br><span class="line">index = np.where(arr &gt; <span class="number">2</span>)</span><br><span class="line">print(index)</span><br><span class="line">(array([<span class="number">3</span>, <span class="number">4</span>]),)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Creating the desired array</span></span><br><span class="line">new_arr = arr[index]</span><br></pre></td></tr></table></figure></p>
+<p>如果我们想要删除特定的元素，你可以使用。<font color="#dd0000"><strong>numpy.delete()</strong></font>。该函数的输入是NumPy Array和我们需要删除的元素的索引。如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># We use the previous array</span></span><br><span class="line">new_arr = np.delete(arr, index)</span><br></pre></td></tr></table></figure></p>
+<p>当然我们也可以不用<font color="#dd0000"><strong>numpy.where()</strong></font>， 而直接使用简单的boolean array以获取到我们需要的值。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">index = arr &gt; <span class="number">2</span></span><br><span class="line"></span><br><span class="line">print(index)</span><br><span class="line">  [<span class="keyword">False</span> <span class="keyword">False</span> <span class="keyword">True</span> <span class="keyword">True</span> <span class="keyword">True</span>]</span><br><span class="line"></span><br><span class="line">new_arr = arr[index]</span><br></pre></td></tr></table></figure></p>
+<font color="#dd0000"><strong>注意：这两种方法哪一个更好呢？当我们处理大量的元素时，boolean indexing比numpy.where（）更快。</strong></font>
+
+<h3 id="2-2-Boolean语句和NumPy-Arrays"><a href="#2-2-Boolean语句和NumPy-Arrays" class="headerlink" title="2.2 Boolean语句和NumPy Arrays"></a>2.2 Boolean语句和NumPy Arrays</h3><p>Boolean语句一般使用<font color="#dd0000"><strong>and</strong></font>和<font color="#dd0000"><strong>or</strong></font>或者两者的结合方式。但是我们在使用NumPy Arrays时，我们只需使用<font color="#dd0000"><strong>&amp;</strong></font>和<font color="#dd0000"><strong>|</strong></font>。如下所示：<br><img src="/2018/03/29/《SciPy-and-NumPy》学习笔记/1.png" alt=""><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Creating an image</span></span><br><span class="line">img1 = np.zeros((<span class="number">20</span>, <span class="number">20</span>)) + <span class="number">3</span></span><br><span class="line">img1[<span class="number">4</span>:<span class="number">-4</span>, <span class="number">4</span>:<span class="number">-4</span>] = <span class="number">6</span></span><br><span class="line">img1[<span class="number">7</span>:<span class="number">-7</span>, <span class="number">7</span>:<span class="number">-7</span>] = <span class="number">9</span></span><br><span class="line"><span class="comment"># See Plot A</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Let's filter out all values larger than 2 and less than 6.</span></span><br><span class="line">index1 = img1 &gt; <span class="number">2</span></span><br><span class="line">index2 = img1 &lt; <span class="number">6</span></span><br><span class="line">compound_index = index1 &amp; index2</span><br><span class="line"><span class="comment"># The compound statement can alternatively be written as</span></span><br><span class="line">compound_index = (img1 &gt; <span class="number">3</span>) &amp; (img1 &lt; <span class="number">7</span>)</span><br><span class="line">img2 = np.copy(img1)</span><br><span class="line">img2[compound_index] = <span class="number">0</span></span><br><span class="line"><span class="comment"># See Plot B.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Making the boolean arrays even more complex</span></span><br><span class="line">index3 = img1 == <span class="number">9</span></span><br><span class="line">index4 = (index1 &amp; index2) | index3</span><br><span class="line">img3 = np.copy(img1)</span><br><span class="line">img3[index4] = <span class="number">0</span></span><br><span class="line"><span class="comment"># See Plot C.</span></span><br></pre></td></tr></table></figure></p>
+<p>或者，在某些情况下，我们只想对Arrays中特定的元素进行操作，这也是特别简单的事。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> numpy.random <span class="keyword">as</span> rand</span><br><span class="line"></span><br><span class="line"><span class="comment"># Creating a 100-element array with random values</span></span><br><span class="line"><span class="comment"># from a standard normal distribution or, in other</span></span><br><span class="line"><span class="comment"># words, a Gaussian distribution.</span></span><br><span class="line"><span class="comment"># The sigma is 1 and the mean is 0.</span></span><br><span class="line">a = rand.randn(<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Here we generate an index for filtering</span></span><br><span class="line"><span class="comment"># out undesired elements.</span></span><br><span class="line">index = a &gt; <span class="number">0.2</span></span><br><span class="line">b = a[index]</span><br><span class="line"></span><br><span class="line"><span class="comment"># We execute some operation on the desired elements.</span></span><br><span class="line">b = b ** <span class="number">2</span> - <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Then we put the modified elements back into the</span></span><br><span class="line"><span class="comment"># original array.</span></span><br><span class="line">a[index] = b</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-3-读和写"><a href="#2-3-读和写" class="headerlink" title="2.3 读和写"></a>2.3 读和写</h3><p>读写分为文本文件和二进制文件。</p>
+<h4 id="2-3-1-文本文件"><a href="#2-3-1-文本文件" class="headerlink" title="2.3.1 文本文件"></a>2.3.1 文本文件</h4><p>python常规方式对文本文件的读取示列如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Opening the text file with the 'r' option,</span></span><br><span class="line"><span class="comment"># which only allows reading capability</span></span><br><span class="line">f = open(<span class="string">'somefile.txt'</span>, <span class="string">'r'</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Parsing the file and splitting each line,</span></span><br><span class="line"><span class="comment"># which creates a list where each element of</span></span><br><span class="line"><span class="comment"># it is one line</span></span><br><span class="line">alist = f.readlines()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Closing file</span></span><br><span class="line">f.close()</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line"><span class="comment"># After a few operations, we open a new text file</span></span><br><span class="line"><span class="comment"># to write the data with the 'w' option. If there</span></span><br><span class="line"><span class="comment"># was data already existing in the file, it will be overwritten.</span></span><br><span class="line">f = open(<span class="string">'newtextfile.txt'</span>, <span class="string">'w'</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Writing data to file</span></span><br><span class="line">f.writelines(newdata)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Closing file</span></span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure></p>
+<p>然而,当文件比较大的时候，上述方式在访问和使用文件数据时则显得笨重。此时，直接获取数据到numpy.ndarray将是最好的选择。我们可以通过<font color="#dd0000"><strong>numpy.loadtxt()</strong></font>加载数据,通过<font color="#dd0000"><strong>numpy.savetxt()</strong></font>保存数据。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">arr = np.loadtxt(<span class="string">'somefile.txt'</span>)</span><br><span class="line">np.savetxt(<span class="string">'somenewfile.txt'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>如果文本文件中每列的<font color="#dd0000"><strong>数据类型不一致</strong></font>，<font color="#dd0000"><strong>numpy.loadtxt()</strong></font>仍然可以读取数据，但是<font color="#dd0000"><strong>数据列的类型我们需要预先定义</strong></font>。此时，返回的结果将是一个numpy.recarray。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># example.txt file looks like the following</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># XR21 32.789 1</span></span><br><span class="line"><span class="comment"># XR22 33.091 2</span></span><br><span class="line"></span><br><span class="line">table = np.loadtxt(<span class="string">'example.txt'</span>,</span><br><span class="line">dtype=&#123;<span class="string">'names'</span>: (<span class="string">'ID'</span>, <span class="string">'Result'</span>, <span class="string">'Type'</span>),</span><br><span class="line"><span class="string">'formats'</span>: (<span class="string">'S4'</span>, <span class="string">'f4'</span>, <span class="string">'i2'</span>))&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># array([('XR21', 32.78900146484375, 1),</span></span><br><span class="line"><span class="comment"># ('XR22', 33.090999603271484, 2)],</span></span><br><span class="line"><span class="comment"># dtype=[('ID', '|S4'), ('Result', '&lt;f4'), ('Type', '&lt;i2')])</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-3-2-二进制文件"><a href="#2-3-2-二进制文件" class="headerlink" title="2.3.2 二进制文件"></a>2.3.2 二进制文件</h4><p>我们可以通过<font color="#dd0000"><strong>numpy.load()</strong></font>加载二进制数据,通过<font color="#dd0000"><strong>numpy.save()</strong></font>保存二进制数据。这种方式主要的缺点是，二进制格式的文件只能被其他使用NumPy的系统所读取。如果你需要更加便捷的文件格式，我们可以<font color="#dd0000"><strong>scipy.io</strong></font>。这个将会在后面介绍。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Creating a large array</span></span><br><span class="line">data = np.empty((<span class="number">1000</span>, <span class="number">1000</span>))</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Saving the array with numpy.save</span></span><br><span class="line">np.save(<span class="string">'test.npy'</span>, data)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># If space is an issue for large files, then</span></span><br><span class="line"><span class="comment"># use numpy.savez instead. It is slower than</span></span><br><span class="line"><span class="comment"># numpy.save because it compresses the binary</span></span><br><span class="line"><span class="comment"># file.</span></span><br><span class="line">np.savez(<span class="string">'test.npz'</span>, data)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Loading the data array</span></span><br><span class="line">newdata = np.load(<span class="string">'test.npy'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>幸运的是，numpy.save和numpy.savez在保存numpy.recarray对象时没有问题。 因此，如果不考虑Python环境以外的可移植性，那么使用复杂和结构化的数组就不成问题。</p>
+<h3 id="2-4-Math"><a href="#2-4-Math" class="headerlink" title="2.4 Math"></a>2.4 Math</h3><p>NumPy库自有一套math module，我们不能使用Python的math module去操作NumPy Arrays.</p>
+<h4 id="2-4-1-线性代数"><a href="#2-4-1-线性代数" class="headerlink" title="2.4.1 线性代数"></a>2.4.1 线性代数</h4><p>NumPy Arrays默认情况下其表现行为不像线性代数中的matrics, 而是将操作映射到其每一个元素上。但是当矩阵转置和矩阵相乘时，我们可以使用<font color="#dd0000"><strong>numpy.transpose()</strong></font>和<font color="#dd0000"><strong>numpy.dot()</strong></font>。这种方式是Pyhtonic的，可能对于数学爱好者更喜欢使用<font color="#dd0000"><strong>numpy.matrix对象</strong></font>。下面，我们将比较<font color="#dd0000"><strong>numpy.array</strong></font>和<font color="#dd0000"><strong>numpy.matrix</strong></font>各自的优劣。</p>
+<p>现在让我们解决<font color="#dd0000"><strong>AX=B</strong></font>这个问题。按照线性代数的知识，我们知道<font color="#dd0000"><strong>X=A-1B</strong></font>。当A, B都是<font color="#dd0000"><strong>numpy.matrix</strong></font>时。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># Defining the matrices</span></span><br><span class="line">A = np.matrix([[<span class="number">3</span>, <span class="number">6</span>, <span class="number">-5</span>],</span><br><span class="line">              [<span class="number">1</span>, <span class="number">-3</span>, <span class="number">2</span>],</span><br><span class="line">              [<span class="number">5</span>, <span class="number">-1</span>, <span class="number">4</span>]])</span><br><span class="line">B = np.matrix([[<span class="number">12</span>],</span><br><span class="line">              [<span class="number">-2</span>],</span><br><span class="line">              [<span class="number">10</span>]])</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Solving for the variables, where we invert A</span></span><br><span class="line">X = A ** (<span class="number">-1</span>) * B</span><br><span class="line">print(X)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># matrix([[ 1.75],</span></span><br><span class="line"><span class="comment"># [ 1.75],</span></span><br><span class="line"><span class="comment"># [ 0.75]])</span></span><br></pre></td></tr></table></figure></p>
+<p>当A, B都是<font color="#dd0000"><strong>numpy.array</strong></font>时。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">a = np.array([[<span class="number">3</span>, <span class="number">6</span>, <span class="number">-5</span>],</span><br><span class="line">              [<span class="number">1</span>, <span class="number">-3</span>, <span class="number">2</span>],</span><br><span class="line">              [<span class="number">5</span>, <span class="number">-1</span>, <span class="number">4</span>]])</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Defining the array</span></span><br><span class="line">b = np.array([<span class="number">12</span>, <span class="number">-2</span>, <span class="number">10</span>])</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Solving for the variables, where we invert A</span></span><br><span class="line">x = np.linalg.inv(a).dot(b)</span><br><span class="line">print(x)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># array([ 1.75, 1.75, 0.75])</span></span><br></pre></td></tr></table></figure></p>
+<font color="#dd0000"><strong>注意：两种方式都可以处理线性代数的问题，那么哪一种更好呢？numpy.matrix语法简洁，numpy.array更加实用。首先，在科学计算的Python环境中，NumPy array是标准的方式， 其bugs远少于使用numpy.matrix。另外，numpy.array一般比numpy.matrix计算速度更快。</strong></font>
+
+<h2 id="3-Scipy"><a href="#3-Scipy" class="headerlink" title="3. Scipy"></a>3. Scipy</h2><p>借助NumPy，我们可以通过简单编码实现快速解决方案。 那么SciPy在什么地方出现呢？</p>
+<h3 id="3-1-Optimization-and-Minimization"><a href="#3-1-Optimization-and-Minimization" class="headerlink" title="3.1 Optimization and Minimization"></a>3.1 Optimization and Minimization</h3><p>SciPy中的优化包使我们能够轻松快速地解决最小化问题。 下面我们从一个简单的线性回归开始，然后将其扩展到拟合非线性数据。</p>
+<h4 id="3-1-1-Data-Modeling-and-Fitting"><a href="#3-1-1-Data-Modeling-and-Fitting" class="headerlink" title="3.1.1 Data Modeling and Fitting"></a>3.1.1 Data Modeling and Fitting</h4><p>如下代码将要建模一个简单的线性等式，f (x) = ax + b。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">  <span class="keyword">from</span> scipy.optimize <span class="keyword">import</span> curve_fit</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Creating a function to model and create data</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(x, a, b)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> a * x + b</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># Generating clean data</span></span><br><span class="line">  x = np.linspace(<span class="number">0</span>, <span class="number">10</span>, <span class="number">100</span>)</span><br><span class="line">  y = func(x, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># Adding noise to the data</span></span><br><span class="line">  yn = y + <span class="number">0.9</span> * np.random.normal(size=len(x))</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># Executing curve_fit on noisy data</span></span><br><span class="line">  popt, pcov = curve_fit(func, x, yn)</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># popt returns the best fit values for parameters of</span></span><br><span class="line">  <span class="comment"># the given model (func).</span></span><br><span class="line">  print(popt)</span><br></pre></td></tr></table></figure></p>
+<p>更进一步，我们可以对高斯分布进行最小二乘拟合，这是一个非线性函数， 如下图所示。其中 a是一个标量， μ是均值，σ是标准差。<br><img src="/2018/03/29/《SciPy-and-NumPy》学习笔记/2.png" alt=""><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Creating a function to model and create data</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(x, a, b, c)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> a*np.exp(-(x-b)**<span class="number">2</span>/(<span class="number">2</span>*c**<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Generating clean data</span></span><br><span class="line">x = np.linspace(<span class="number">0</span>, <span class="number">10</span>, <span class="number">100</span>)</span><br><span class="line">y = func(x, <span class="number">1</span>, <span class="number">5</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Adding noise to the data</span></span><br><span class="line">yn = y + <span class="number">0.2</span> * np.random.normal(size=len(x))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Executing curve_fit on noisy data</span></span><br><span class="line">popt, pcov = curve_fit(func, x, yn)</span><br><span class="line"></span><br><span class="line"><span class="comment"># popt returns the best-fit values for parameters of the given model (func).</span></span><br><span class="line">print(popt)</span><br></pre></td></tr></table></figure></p>
+<p>两者拟合的结果如下面两个图所示。</p>
+<p><center>线性方程拟合噪声数据</center><br><img src="/2018/03/29/《SciPy-and-NumPy》学习笔记/3.png" alt=""></p>
+<p><center>单高斯方程拟合噪声数据</center><br><img src="/2018/03/29/《SciPy-and-NumPy》学习笔记/4.png" alt=""></p>
+<p>再进一步，我们可以拟合具有多个高斯轮廓的一维数据集。 该函数现在扩展为包含两个具有不同输入变量的高斯方程。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Two-Gaussian model</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(x, a0, b0, c0, a1, b1,c1)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> a0*np.exp(-(x - b0) ** <span class="number">2</span>/(<span class="number">2</span> * c0 ** <span class="number">2</span>))\</span><br><span class="line">  + a1 * np.exp(-(x - b1) ** <span class="number">2</span>/(<span class="number">2</span> * c1 ** <span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Generating clean data</span></span><br><span class="line">x = np.linspace(<span class="number">0</span>, <span class="number">20</span>, <span class="number">200</span>)</span><br><span class="line">y = func(x, <span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">-2</span>, <span class="number">15</span>, <span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Adding noise to the data</span></span><br><span class="line">yn = y + <span class="number">0.2</span> * np.random.normal(size=len(x))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Since we are fitting a more complex function,</span></span><br><span class="line"><span class="comment"># providing guesses for the fitting will lead to</span></span><br><span class="line"><span class="comment"># better results.</span></span><br><span class="line">guesses = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">15</span>, <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Executing curve_fit on noisy data</span></span><br><span class="line">popt, pcov = curve_fit(func, x, yn, p0=guesses)</span><br></pre></td></tr></table></figure>
+<p>其拟合结果如下。</p>
+<p><center>多高斯方程拟合噪声数据</center><br><img src="/2018/03/29/《SciPy-and-NumPy》学习笔记/5.png" alt=""></p>
+<h4 id="3-1-2-Solutions-to-Functions"><a href="#3-1-2-Solutions-to-Functions" class="headerlink" title="3.1.2 Solutions to Functions"></a>3.1.2 Solutions to Functions</h4><p>通过数据建模和拟合，我们可以继续寻找解决方案，例如“函数的根是什么？”或“两个函数在哪里相交？”SciPy提供了一组工具来在优化中执行此操作模块。让我们以求方程的根开始吧， 这儿我们将用到<font color="#dd0000"><strong>scipy.optimize.fsolve</strong></font>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.optimize <span class="keyword">import</span> fsolve</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">line = <span class="keyword">lambda</span> x: x + <span class="number">3</span></span><br><span class="line">solution = fsolve(line, <span class="number">-2</span>)</span><br><span class="line"><span class="keyword">print</span> solution</span><br></pre></td></tr></table></figure></p>
+<p>其结果如下。</p>
+<p><center>线性函数在y=0时的根</center><br><img src="/2018/03/29/《SciPy-and-NumPy》学习笔记/6.png" alt=""></p>
+<p>找到两个函数的交点同样很简单。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.optimize <span class="keyword">import</span> fsolve</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Defining function to simplify intersection solution</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findIntersection</span><span class="params">(func1, func2, x0)</span>:</span></span><br><span class="line"> <span class="keyword">return</span> fsolve(<span class="keyword">lambda</span> x : func1(x) - func2(x), x0)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Defining functions that will intersect</span></span><br><span class="line">funky = <span class="keyword">lambda</span> x : np.cos(x / <span class="number">5</span>) * np.sin(x / <span class="number">2</span>)</span><br><span class="line">line = <span class="keyword">lambda</span> x : <span class="number">0.01</span> * x - <span class="number">0.5</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Defining range and getting solutions on intersection points</span></span><br><span class="line">x = np.linspace(<span class="number">0</span>,<span class="number">45</span>,<span class="number">10000</span>)</span><br><span class="line">result = findIntersection(funky, line, [<span class="number">15</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">35</span>, <span class="number">40</span>, <span class="number">45</span>])</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Printing out results for x and y</span></span><br><span class="line">print(result, line(result))</span><br></pre></td></tr></table></figure></p>
+<p>其结果如下。</p>
+<p><center>两函数的交点</center><br><img src="/2018/03/29/《SciPy-and-NumPy》学习笔记/7.png" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/13/AlexNet网络实现/" rel="next" title="AlexNet网络实现">
+                <i class="fa fa-chevron-left"></i> AlexNet网络实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/05/python多线程多进程/" rel="prev" title="python多线程多进程">
+                python多线程多进程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/user_img/marlon.jpg"
+               alt="marlon" />
+          <p class="site-author-name" itemprop="name">marlon</p>
+           
+              <p class="site-description motion-element" itemprop="description">学习记录所用</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/bdmk" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-简介"><span class="nav-text">1. 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-NumPy"><span class="nav-text">2. NumPy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-NumPy-Arrays"><span class="nav-text">2.1 NumPy Arrays</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-NumPy-Array-和-数据类型"><span class="nav-text">2.1.1 NumPy Array 和 数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-Record-Arrays"><span class="nav-text">2.1.2 Record Arrays</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-Indexing-and-Slicing"><span class="nav-text">2.1.3 Indexing and Slicing</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Boolean语句和NumPy-Arrays"><span class="nav-text">2.2 Boolean语句和NumPy Arrays</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-读和写"><span class="nav-text">2.3 读和写</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-文本文件"><span class="nav-text">2.3.1 文本文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-二进制文件"><span class="nav-text">2.3.2 二进制文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-Math"><span class="nav-text">2.4 Math</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-线性代数"><span class="nav-text">2.4.1 线性代数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Scipy"><span class="nav-text">3. Scipy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Optimization-and-Minimization"><span class="nav-text">3.1 Optimization and Minimization</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-1-Data-Modeling-and-Fitting"><span class="nav-text">3.1.1 Data Modeling and Fitting</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-2-Solutions-to-Functions"><span class="nav-text">3.1.2 Solutions to Functions</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">marlon</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "feed68a2c0864e71a6df4d0a1b8616b6",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
