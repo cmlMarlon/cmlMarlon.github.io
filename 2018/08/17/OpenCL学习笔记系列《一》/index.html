@@ -99,7 +99,7 @@
 <meta property="og:site_name" content="茂茂">
 <meta property="og:description" content="本系列博客是我最近学习OpenCL的一个总结。内容主要是对《OpenCL异构并行计算-原理、机制与优化实践》这本书的一个简单摘要。希望能和大家一起进步，如有谬误，还望大家多多指正。   1. 异构并行计算简介异构并行计算包含两个方面的内容：异构和并行。异构是指:计算单元由不同的多种处理器组成，如X86 CPU+GPU、ARM CPU+GPU、X86 CPU+FPGS、ARM CPU+DSP等。并行">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-17T12:54:24.310Z">
+<meta property="og:updated_time" content="2018-08-17T13:01:35.789Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenCL学习笔记系列《一》">
 <meta name="twitter:description" content="本系列博客是我最近学习OpenCL的一个总结。内容主要是对《OpenCL异构并行计算-原理、机制与优化实践》这本书的一个简单摘要。希望能和大家一起进步，如有谬误，还望大家多多指正。   1. 异构并行计算简介异构并行计算包含两个方面的内容：异构和并行。异构是指:计算单元由不同的多种处理器组成，如X86 CPU+GPU、ARM CPU+GPU、X86 CPU+FPGS、ARM CPU+DSP等。并行">
@@ -423,16 +423,21 @@
 </code></pre><h2 id="2-几个概念"><a href="#2-几个概念" class="headerlink" title="2.几个概念"></a>2.几个概念</h2><p>在具体介绍并行计算的历史、现状和未来之前，我们需要先学习几个比较重要的概念。</p>
 <p><font color="#dd0000"><strong>1）向量化</strong></font>。<br>    向量化是一种一条指令同时处理多个数据的方法，它是一种数据并行技术。主流的向量化技术有两种:SIMD（Single Instruction Multiple Data，单指令多数据）和SIMT（Single Instruction Multiple Thread，单指令多线程），大多CPU（如AMD Zen处理器）都使用SIMD向量化技术，而大多数GPU（如AMD GCN）都使用SIMT向量化技术。</p>
 <p><font color="#dd0000"><strong>2）多核</strong></font>。<br>    多核是指：在一块芯片上，记成多个处理器核心，这多个处理器核心共享或不共享缓存层次结构。</p>
-<p><font color="#dd0000"><strong>3）多路</strong></font>。<br>    硬件生产商会将多个多核处理器互联（如AMD的HT（Hyper Transport）总线）在同一个主板上，<br>    各个多核处理器之间通常共享缓存（如三级缓存或eDRAM）或内存来交换数据。<br>多核和向量化是现代处理器提升性能的两种主要途径，今天的绝大多数处理器都已经是多核向量化处理器。<br>首先我们了解先之前的单核标量处理器遇到了什么问题。</p>
-<h2 id="3-单核标量处理器的困境。"><a href="#3-单核标量处理器的困境。" class="headerlink" title="3. 单核标量处理器的困境。"></a>3. 单核标量处理器的困境。</h2><p>对于单核标量处理器来说，处理器生产商只能考虑如何提升单核标量处理器的性能。其常见的提升性能的方法为：<font color="#dd0000"><strong>提升处理器的时钟频率</strong></font>和<font color="#dd0000"><strong>提升指令级并行能力</strong></font>。<br>2005年之前，单核标量处理器的性能以满足摩尔定律描述的速度提升。但是在此之后，由于功耗限制了频率的提升以及提升指令级并行遇到瓶颈，单核标量处理器的性能很难有大幅度的提升，从而出现了多核处理器。</p>
+<p><font color="#dd0000"><strong>3）多路</strong></font>。<br>    硬件生产商会将多个多核处理器互联（如AMD的HT（Hyper Transport）总线）在同一个主板上，<br>    各个多核处理器之间通常共享缓存（如三级缓存或eDRAM）或内存来交换数据。</p>
+<p>多核和向量化是现代处理器提升性能的两种主要途径，今天的绝大多数处理器都已经是多核向量化处理器。首先我们了解先之前的单核标量处理器遇到了什么问题。</p>
+<h2 id="3-单核标量处理器的困境。"><a href="#3-单核标量处理器的困境。" class="headerlink" title="3. 单核标量处理器的困境。"></a>3. 单核标量处理器的困境。</h2><p>对于单核标量处理器来说，处理器生产商只能考虑如何提升单核标量处理器的性能。其常见的提升性能的方法为：<font color="#dd0000"><strong>提升处理器的时钟频率</strong></font>和<font color="#dd0000"><strong>提升指令级并行能力</strong></font>。</p>
+<p>2005年之前，单核标量处理器的性能以满足摩尔定律描述的速度提升。但是在此之后，由于功耗限制了频率的提升以及提升指令级并行遇到瓶颈，单核标量处理器的性能很难有大幅度的提升，从而出现了多核处理器。</p>
 <h2 id="4-多核并行计算与向量化的出现"><a href="#4-多核并行计算与向量化的出现" class="headerlink" title="4. 多核并行计算与向量化的出现"></a>4. 多核并行计算与向量化的出现</h2><p>由于散热技术和硬件生产技术无法满足提高处理器频率对工号的设计要求，现代处理器的频率近似停滞。为了提供更高性能的处理器，处理器硬件生产商通过增加寄存器的宽度和指令的宽度来同时处理多个数据（向量化）以及采用将多个处理器组成到一个芯片上（多核）。今天的绝大多数处理器，如X86多核CPU、ARM多核CPU、GPU及DSP等，都已经是多核向量处理器。虽然多核和向量化的出现满足了应用对计算能力的需求，但是他们也带来了两个重要的问题： </p>
 <p><font color="#dd0000"><strong>如何编程以发挥多核和向量的计算能力；</strong></font></p>
 <p><font color="#dd0000"><strong>如何保证随着核数和向量长度的增加，性能的提升依旧接近线性</strong></font></p>
 <h2 id="5-异构计算的崛起"><a href="#5-异构计算的崛起" class="headerlink" title="5. 异构计算的崛起"></a>5. 异构计算的崛起</h2><p>从2007年NVIDIA推出CUDA计算环境开始，异构并行计算逐渐得到大众的认可，从学术界走向了工业界。异构并行计算的出现缓解了处理器发展面临的两个主要问题：性能问题和功耗问题。<br>1) 由于不同的硬件平台适合处理不同的计算问题。合理地将不同类型的计算分发到异构平台的不同硬件上能够获得更好的性能。</p>
 <p>2) 由于采用为特定应用优化的处理器。处理器设计可以依据应用的具体特点来优化。</p>
 <h3 id="5-1-GPGPU的理念"><a href="#5-1-GPGPU的理念" class="headerlink" title="5.1 GPGPU的理念"></a>5.1 GPGPU的理念</h3><p>在NVIDIA推出其CUDA计算环境之前，许多科学家就已经意识到如果能用GPU提供的强大计算能力来计算一些通用运算，那么就能够获得很高的计算速度。但那时的GPU主要用于图形渲染，要使用GPU计算，则必须要将算法用OpenGL映射成图形的渲染过程进而达到计算的目的，这称之为GPGPU。</p>
-<h3 id="5-2-CUDA的崛起"><a href="#5-2-CUDA的崛起" class="headerlink" title="5.2 CUDA的崛起"></a>5.2 CUDA的崛起</h3><p>在2007年，NVIDIA推出了GTX8800 GPU，与之前为图形渲染的每个阶段独立设计流水线不同，GTX8800采用了统一的渲染架构，同一处理器会处理图形渲染的全部流水线，这不仅极大的提升了硬件的利用率，获得了极强的计算性能；同时统一架构也使得在GPU上进行通用计算更为容易。为了和传统的GPGPU计算向区别，称之为GPU计算时代。<br>CUDA平台本身提供了CUDA C语言扩展，相比普通C语言，CUDA C增加了使用NVIDIA GPU进行通用计算必不可少的一些语言扩展，其他功能则都通过函数库提供。由于CUDA完美地结合了C语言的指针抽象，NVIDIA不断升级其CUDA计算平台，CUDA获得了大量科学计算人员的认可，已经成为目前世界上使用最广泛的并行计算平台。<br>但是，由于CUDA由NVIDIA一家设计，并未被Intel和AMD等接受，因此目前使用CUDA编写的程序只支持NVIDIA GPU，而<font color="#dd0000"><strong>OpenCL</strong></font>的出现解决了这一问题。</p>
-<h3 id="5-3-OpenCL横空出世"><a href="#5-3-OpenCL横空出世" class="headerlink" title="5.3 OpenCL横空出世"></a>5.3 OpenCL横空出世</h3><p>OpenCL全称为Open Computing Language（开放计算平台），先由Apple设计，后来交由Khronos Group维护，是异构平台并行编程的开放的标准，也是一个编程框架。OpenCL的设计借鉴了CUDA的成功的经验，并尽可能地支持多核CPU、GPU或其他加速器。OpenCL不但支持数据并行，还支持任务并行。同时OpenCL内建了多GPU并行的支持。这使得OpenCL的应用范围比CUDA广。为了能使用于一些更低端的嵌入式设备（如DSP+单片机这种环境），OpenCL API基于纯C语言进行编写，所以OpenCL API的函数名比较长，参数也比较多。<br>OpenCL覆盖的领域不但包括GPU，还包括其他的多种处理器芯片。目前，支持OpenCL的硬件主要局限在CPU、GPU、DSP和FPGA上，目前在桌面端和服务器端提供OpenCL开发环境的主要有Apple、NVIDIA、AMD、ARM和Intel。除了OS X系统，NVIDIA、AMD与Intel提供的OpenCL实现都不约而同地不支持自家产品以外的产品。由于硬件不同，为了写出性能优异的代码，可能需要为不同的平台做相应的优化，这对程序的可移植性会造成影响。</p>
+<h3 id="5-2-CUDA的崛起"><a href="#5-2-CUDA的崛起" class="headerlink" title="5.2 CUDA的崛起"></a>5.2 CUDA的崛起</h3><p>在2007年，NVIDIA推出了GTX8800 GPU，与之前为图形渲染的每个阶段独立设计流水线不同，GTX8800采用了统一的渲染架构，同一处理器会处理图形渲染的全部流水线，这不仅极大的提升了硬件的利用率，获得了极强的计算性能；同时统一架构也使得在GPU上进行通用计算更为容易。为了和传统的GPGPU计算向区别，称之为GPU计算时代。</p>
+<p>CUDA平台本身提供了CUDA C语言扩展，相比普通C语言，CUDA C增加了使用NVIDIA GPU进行通用计算必不可少的一些语言扩展，其他功能则都通过函数库提供。由于CUDA完美地结合了C语言的指针抽象，NVIDIA不断升级其CUDA计算平台，CUDA获得了大量科学计算人员的认可，已经成为目前世界上使用最广泛的并行计算平台。</p>
+<p>但是，由于CUDA由NVIDIA一家设计，并未被Intel和AMD等接受，因此目前使用CUDA编写的程序只支持NVIDIA GPU，而<font color="#dd0000"><strong>OpenCL</strong></font>的出现解决了这一问题。</p>
+<h3 id="5-3-OpenCL横空出世"><a href="#5-3-OpenCL横空出世" class="headerlink" title="5.3 OpenCL横空出世"></a>5.3 OpenCL横空出世</h3><p>OpenCL全称为Open Computing Language（开放计算平台），先由Apple设计，后来交由Khronos Group维护，是异构平台并行编程的开放的标准，也是一个编程框架。OpenCL的设计借鉴了CUDA的成功的经验，并尽可能地支持多核CPU、GPU或其他加速器。OpenCL不但支持数据并行，还支持任务并行。同时OpenCL内建了多GPU并行的支持。这使得OpenCL的应用范围比CUDA广。为了能使用于一些更低端的嵌入式设备（如DSP+单片机这种环境），OpenCL API基于纯C语言进行编写，所以OpenCL API的函数名比较长，参数也比较多。</p>
+<p>OpenCL覆盖的领域不但包括GPU，还包括其他的多种处理器芯片。目前，支持OpenCL的硬件主要局限在CPU、GPU、DSP和FPGA上，目前在桌面端和服务器端提供OpenCL开发环境的主要有Apple、NVIDIA、AMD、ARM和Intel。除了OS X系统，NVIDIA、AMD与Intel提供的OpenCL实现都不约而同地不支持自家产品以外的产品。由于硬件不同，为了写出性能优异的代码，可能需要为不同的平台做相应的优化，这对程序的可移植性会造成影响。</p>
 <p><font color="#dd0000"><strong>OpenCL包含两个部分：一是OpenCL C语言和主机端API；二是硬件架构的抽象。</strong></font>为了得OpenCL程序能够在各种硬件平台上运行，OpenCL提供了一个硬件平台层。同时各种不同设备上的存储器不相同，相应地，OpenCL提供了一个存储器抽象模型，与CUDA相似，OpenCL还提供了执行模型和编程模型。OpenCL不但包括一门编程语言，还包括一个完整的并行编程框架，通过编程语言，API以及运行时系统来支持软件在整个平台上的运行。相比CUDA，OpenCL的优点在于它提供了一种能够在不同平台上可移植的编程方式，另外原生支持的多设备并行也是其一大亮点。</p>
 <h2 id="6-异构计算的未来"><a href="#6-异构计算的未来" class="headerlink" title="6 异构计算的未来"></a>6 异构计算的未来</h2><p>近十年来，异构并行计算平台、标准如雨后春笋般出现。从私有的CUDA、C++ AMP、Direct3D、Metal API，到开放的OpenCL、OpenACC、OpenGL。同时一些老牌共享存储器编程环境OpenMP和分布式编程环境MPI也增加了对异构计算的支持。</p>
 
