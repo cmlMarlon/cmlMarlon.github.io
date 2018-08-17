@@ -75,7 +75,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="并行计算," />
 
 
 
@@ -91,16 +91,18 @@
 
 
 
-<meta name="description" content="学习记录所用">
-<meta property="og:type" content="website">
-<meta property="og:title" content="茂茂">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta name="description" content="本系列博客是我最近学习OpenCL的一个总结。内容主要是对《OpenCL异构并行计算-原理、机制与优化实践》这本书的一个简单摘要。希望能和大家一起进步，如有谬误，还望大家多多指正。   1. 异构并行计算简介异构并行计算包含两个方面的内容：异构和并行。异构是指:计算单元由不同的多种处理器组成，如X86 CPU+GPU、ARM CPU+GPU、X86 CPU+FPGS、ARM CPU+DSP等。并行">
+<meta name="keywords" content="并行计算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenCL学习笔记系列《一》">
+<meta property="og:url" content="http://yoursite.com/2018/08/17/OpenCL学习笔记系列《一》/index.html">
 <meta property="og:site_name" content="茂茂">
-<meta property="og:description" content="学习记录所用">
+<meta property="og:description" content="本系列博客是我最近学习OpenCL的一个总结。内容主要是对《OpenCL异构并行计算-原理、机制与优化实践》这本书的一个简单摘要。希望能和大家一起进步，如有谬误，还望大家多多指正。   1. 异构并行计算简介异构并行计算包含两个方面的内容：异构和并行。异构是指:计算单元由不同的多种处理器组成，如X86 CPU+GPU、ARM CPU+GPU、X86 CPU+FPGS、ARM CPU+DSP等。并行">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-17T12:29:58.665Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="茂茂">
-<meta name="twitter:description" content="学习记录所用">
+<meta name="twitter:title" content="OpenCL学习笔记系列《一》">
+<meta name="twitter:description" content="本系列博客是我最近学习OpenCL的一个总结。内容主要是对《OpenCL异构并行计算-原理、机制与优化实践》这本书的一个简单摘要。希望能和大家一起进步，如有谬误，还望大家多多指正。   1. 异构并行计算简介异构并行计算包含两个方面的内容：异构和并行。异构是指:计算单元由不同的多种处理器组成，如X86 CPU+GPU、ARM CPU+GPU、X86 CPU+FPGS、ARM CPU+DSP等。并行">
 
 
 
@@ -128,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/17/OpenCL学习笔记系列《一》/"/>
 
 
 
 
 
-  <title>归档 | 茂茂</title>
+  <title>OpenCL学习笔记系列《一》 | 茂茂</title>
   
 
 
@@ -159,7 +161,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -307,403 +309,203 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 13 篇日志。 继续努力。
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/17/OpenCL学习笔记系列《一》/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="marlon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/user_img/marlon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茂茂">
     </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">OpenCL学习笔记系列《一》</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-17T15:44:26+08:00">
+                2018-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/《并行计算》/" itemprop="url" rel="index">
+                    <span itemprop="name">《并行计算》</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2018/08/17/OpenCL学习笔记系列《一》/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
-      
 
+      
+        <font color="#dd0000"><strong>本系列博客是我最近学习OpenCL的一个总结。内容主要是对《OpenCL异构<br>并行计算-原理、机制与优化实践》这本书的一个简单摘要。希望能和大家一起进步，如有谬误，还望大<br>家多多指正。</strong></font>
+
+
+<h2 id="1-异构并行计算简介"><a href="#1-异构并行计算简介" class="headerlink" title="1. 异构并行计算简介"></a>1. 异构并行计算简介</h2><p>异构并行计算包含两个方面的内容：异构和并行。异构是指:计算单元由不同的多种处理器组成，如<br>X86 CPU+GPU、ARM CPU+GPU、X86 CPU+FPGS、ARM CPU+DSP等。并行是指：要发挥异构硬件平台<br>的全部性能必须要使用并行的编程方式。这通常包含两个层次的内容：</p>
+<pre><code>1）多个不同架构的处理器同时计算，要发挥异构系统中所有处理器的性能，可通过并行编程使每个
+处理器都参与运算，避免处理器闲置。
+
+2）每个处理器都是多核向量处理器，这要求使用并行编程以发挥每个处理器的计算能力。
+</code></pre><h2 id="2-几个概念"><a href="#2-几个概念" class="headerlink" title="2.几个概念"></a>2.几个概念</h2><p>在具体介绍并行计算的历史、现状和未来之前，我们需要先学习几个比较重要的概念。</p>
+<font color="#dd0000"><strong>1）向量化</strong></font>。<br><br>    向量化是一种一条指令同时处理多个数据的方法，它是一种数据并行技术。主流的向量化技术有两种:<br>    SIMD（Single Instruction Multiple Data，单指令多数据）和SIMT（Single Instruction<br>    Multiple Thread，单指令多线程），大多数CPU（如AMD Zen处理器）都使用SIMD向量化技术，而<br>    大多数GPU（如AMD GCN）都使用SIMT向量化技术。<br><br><font color="#dd0000"><strong>2）多核</strong></font>。<br><br>    多核是指：在一块芯片上，记成多个处理器核心，这多个处理器核心共享或不共享缓存层次结构。<br><br><font color="#dd0000"><strong>3）多路</strong></font>。<br><br>    硬件生产商会将多个多核处理器互联（如AMD的HT（Hyper Transport）总线）在同一个主板上，<br>    各个多核处理器之间通常共享缓存（如三级缓存或eDRAM）或内存来交换数据。<br><br>多核和向量化是现代处理器提升性能的两种主要途径，今天的绝大多数处理器都已经是多核向量化处理器。<br>首先我们了解先之前的单核标量处理器遇到了什么问题。<br><br>## 3. 单核标量处理器的困境。<br>对于单核标量处理器来说，处理器生产商只能考虑如何提升单核标量处理器的性能。其常见的提升性能的<br>方法为：<font color="#dd0000"><strong>提升处理器的时钟频率</strong></font>和<font color="#dd0000"><strong>提升指令级并行能力</strong></font>。<br><br>2005年之前，单核标量处理器的性能以满足摩尔定律描述的速度提升。但是在此之后，由于功耗限制了频<br>率的提升以及提升指令级并行遇到瓶颈，单核标量处理器的性能很难有大幅度的提升，从而出现了多核处<br>理器。<br><br>## 4. 多核并行计算与向量化的出现<br>由于散热技术和硬件生产技术无法满足提高处理器频率对工号的设计要求，现代处理器的频率近似停滞。<br>为了提供更高性能的处理器，处理器硬件生产商通过增加寄存器的宽度和指令的宽度来同时处理多个数据<br>（向量化）以及采用将多个处理器组成到一个芯片上（多核）。今天的绝大多数处理器，如X86多核CPU、<br>ARM多核CPU、GPU及DSP等，都已经是多核向量处理器。虽然多核和向量化的出现满足了应用对计算能力<br>的需求，但是他们也带来了两个重要的问题：<br><br><font color="#dd0000"><strong>如何编程以发挥多核和向量的计算能力；</strong></font>
+
+<font color="#dd0000"><strong>如何保证随着核数和向量长度的增加，性能的提升依旧接近线性</strong></font>
+
+
+<h2 id="5-异构计算的崛起"><a href="#5-异构计算的崛起" class="headerlink" title="5. 异构计算的崛起"></a>5. 异构计算的崛起</h2><p>从2007年NVIDIA推出CUDA计算环境开始，异构并行计算逐渐得到大众的认可，从学术界走向了工业界。<br>异构并行计算的出现缓解了处理器发展面临的两个主要问题：性能问题和功耗问题。<br>1) 由于不同的硬件平台适合处理不同的计算问题。合理地将不同类型的计算分发到异构平台的不同硬<br>   件上能够获得更好的性能。<br>2) 由于采用为特定应用优化的处理器。处理器设计可以依据应用的具体特点来优化。</p>
+<h3 id="5-1-GPGPU的理念"><a href="#5-1-GPGPU的理念" class="headerlink" title="5.1 GPGPU的理念"></a>5.1 GPGPU的理念</h3><p>在NVIDIA推出其CUDA计算环境之前，许多科学家就已经意识到如果能用GPU提供的强大计算能力来计算<br>一些通用运算，那么就能够获得很高的计算速度。但那时的GPU主要用于图形渲染，要使用GPU计算，则<br>必须要将算法用OpenGL映射成图形的渲染过程进而达到计算的目的，这称之为GPGPU。</p>
+<p>###5.2 CUDA的崛起<br>在2007年，NVIDIA推出了GTX8800 GPU，与之前为图形渲染的每个阶段独立设计流水线不同，GTX8800<br>采用了统一的渲染架构，同一处理器会处理图形渲染的全部流水线，这不仅极大的提升了硬件的利用率，<br>获得了极强的计算性能；同时统一架构也使得在GPU上进行通用计算更为容易。为了和传统的GPGPU计算<br>向区别，称之为GPU计算时代。</p>
+<p>CUDA平台本身提供了CUDA C语言扩展，相比普通C语言，CUDA C增加了使用NVIDIA GPU进行通用计算必<br>不可少的一些语言扩展，其他功能则都通过函数库提供。由于CUDA完美地结合了C语言的指针抽象，<br>NVIDIA不断升级其CUDA计算平台，CUDA获得了大量科学计算人员的认可，已经成为目前世界上使用最广<br>泛的并行计算平台。</p>
+<p>但是，由于CUDA由NVIDIA一家设计，并未被Intel和AMD等接受，因此目前使用CUDA编写的程序只支持<br>NVIDIA GPU，而<font color="#dd0000"><strong>OpenCL</strong></font>的出现解决了这一问题。</p>
+<h3 id="5-3-OpenCL横空出世"><a href="#5-3-OpenCL横空出世" class="headerlink" title="5.3 OpenCL横空出世"></a>5.3 OpenCL横空出世</h3><p>OpenCL全称为Open Computing Language（开放计算平台），先由Apple设计，后来交由Khronos Group<br>维护，是异构平台并行编程的开放的标准，也是一个编程框架。OpenCL的设计借鉴了CUDA的成功的经验，<br>并尽可能地支持多核CPU、GPU或其他加速器。OpenCL不但支持数据并行，还支持任务并行。同时OpenCL<br>内建了多GPU并行的支持。这使得OpenCL的应用范围比CUDA广。为了能使用于一些更低端的嵌入式设备<br>（如DSP+单片机这种环境），OpenCL API基于纯C语言进行编写，所以OpenCL API的函数名比较长，<br>参数也比较多。</p>
+<p>OpenCL覆盖的领域不但包括GPU，还包括其他的多种处理器芯片。目前，支持OpenCL的硬件主要局限在<br>CPU、GPU、DSP和FPGA上，目前在桌面端和服务器端提供OpenCL开发环境的主要有Apple、NVIDIA、AMD、<br>ARM和Intel。除了OS X系统，NVIDIA、AMD与Intel提供的OpenCL实现都不约而同地不支持自家产品以外<br>的产品。由于硬件不同，为了写出性能优异的代码，可能需要为不同的平台做相应的优化，这对程序的可移<br>植性会造成影响。</p>
+<p><font color="#dd0000"><strong>OpenCL包含两个部分：一是OpenCL C语言和主机端API；二是硬件架构的抽象。</strong></font>为了使得OpenCL程序能够在各种硬件平台上运行，OpenCL提供了一个硬件平台层。同时各种不同设备上的存储器不相同，相应地，OpenCL提供了一个存储器抽象模型，与CUDA相似，OpenCL还提供了执行模型和编程模型。</p>
+<p>OpenCL不但包括一门编程语言，还包括一个完整的并行编程框架，通过编程语言，API以及运行时系统来支<br>持软件在整个平台上的运行。相比CUDA，OpenCL的优点在于它提供了一种能够在不同平台上可移植的编程方<br>式，另外原生支持的多设备并行也是其一大亮点。</p>
+<h2 id="6-异构计算的未来"><a href="#6-异构计算的未来" class="headerlink" title="6 异构计算的未来"></a>6 异构计算的未来</h2><p>近十年来，异构并行计算平台、标准如雨后春笋般出现。从私有的CUDA、C++ AMP、Direct3D、Metal API，<br>到开放的OpenCL、OpenACC、OpenGL。同时一些老牌共享存储器编程环境OpenMP和分布式编程环境MPI也<br>增加了对异构计算的支持。</p>
+
+      
+    </div>
+
+    <div>
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2018">2018</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/并行计算/" rel="tag"># 并行计算</a>
+          
         </div>
       
+
+      
+      
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/12/opencl-笔记/" rel="next" title="opencl 笔记">
+                <i class="fa fa-chevron-left"></i> opencl 笔记
+              </a>
+            
+          </div>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          <span class="post-nav-divider"></span>
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/17/OpenCL学习笔记系列《一》/" itemprop="url">
-              
-                <span itemprop="name">OpenCL学习笔记系列《一》</span>
-              
-            </a>
-        
-      </h2>
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-17T15:44:26+08:00"
-              content="2018-08-17" >
-          08-17
-        </time>
-      </div>
-
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
+    <div class="post-spread">
       
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/12/opencl-笔记/" itemprop="url">
-              
-                <span itemprop="name">opencl 笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-12T00:41:26+08:00"
-              content="2018-07-12" >
-          07-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/14/实用网站大全/" itemprop="url">
-              
-                <span itemprop="name">实用网站大全</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-14T13:01:18+08:00"
-              content="2018-06-14" >
-          06-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/14/研究生如何科研《一》/" itemprop="url">
-              
-                <span itemprop="name">高效阅读外文文献的经验</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-14T12:06:24+08:00"
-              content="2018-06-14" >
-          06-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/05/python多线程多进程/" itemprop="url">
-              
-                <span itemprop="name">python多线程多进程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-05T16:50:29+08:00"
-              content="2018-04-05" >
-          04-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/29/《SciPy-and-NumPy》学习笔记/" itemprop="url">
-              
-                <span itemprop="name">《SciPy and NumPy》学习笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-29T14:45:03+08:00"
-              content="2018-03-29" >
-          03-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/13/AlexNet网络实现/" itemprop="url">
-              
-                <span itemprop="name">AlexNet网络实现</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-13T23:38:18+08:00"
-              content="2018-03-13" >
-          03-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/13/Tensorboard学习笔记/" itemprop="url">
-              
-                <span itemprop="name">Tensorboard学习笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-13T13:44:08+08:00"
-              content="2018-03-13" >
-          03-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/06/基于集成学习的临床心电图分类算法研究笔记/" itemprop="url">
-              
-                <span itemprop="name">基于集成学习的临床心电图分类算法研究笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-06T21:16:32+08:00"
-              content="2018-03-06" >
-          03-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/20/python源码剖析第一章笔记/" itemprop="url">
-              
-                <span itemprop="name">python源码剖析第一章笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-20T14:54:44+08:00"
-              content="2018-02-20" >
-          02-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
+    </div>
+  </div>
 
 
           </div>
@@ -711,6 +513,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
 
         </div>
         
@@ -730,8 +538,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/user_img/marlon.jpg"
@@ -804,6 +621,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-异构并行计算简介"><span class="nav-text">1. 异构并行计算简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-几个概念"><span class="nav-text">2.几个概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-异构计算的崛起"><span class="nav-text">5. 异构计算的崛起</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-GPGPU的理念"><span class="nav-text">5.1 GPGPU的理念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-OpenCL横空出世"><span class="nav-text">5.3 OpenCL横空出世</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-异构计算的未来"><span class="nav-text">6 异构计算的未来</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -924,7 +757,9 @@
 
 
   
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
 
 
   
