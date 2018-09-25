@@ -75,7 +75,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="并行计算," />
 
 
 
@@ -91,16 +91,18 @@
 
 
 
-<meta name="description" content="学习记录所用">
-<meta property="og:type" content="website">
-<meta property="og:title" content="茂茂">
-<meta property="og:url" content="http://yoursite.com/tags/python/index.html">
+<meta name="description" content="本系列博客是我最近学习OpenCL的一个总结。内容主要是对《OpenCL异构并行计算-原理、机制与优化实践》这本书的一个简单摘要。希望能和大家一起进步，如有谬误，还望大家多多指正。  1. 什么是OpenCL2008年，苹果公司向Khronos Group提交了一份关于跨平台计算框架的草案，该草案由苹果公司开发，并与AMD、IBM、Intel和NVIDIA公司合作逐步完善。这个跨平台计算框架就是O">
+<meta name="keywords" content="并行计算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenCL学习笔记系列《二》">
+<meta property="og:url" content="http://yoursite.com/2018/08/17/OpenCL学习笔记系列《二》/index.html">
 <meta property="og:site_name" content="茂茂">
-<meta property="og:description" content="学习记录所用">
+<meta property="og:description" content="本系列博客是我最近学习OpenCL的一个总结。内容主要是对《OpenCL异构并行计算-原理、机制与优化实践》这本书的一个简单摘要。希望能和大家一起进步，如有谬误，还望大家多多指正。  1. 什么是OpenCL2008年，苹果公司向Khronos Group提交了一份关于跨平台计算框架的草案，该草案由苹果公司开发，并与AMD、IBM、Intel和NVIDIA公司合作逐步完善。这个跨平台计算框架就是O">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-17T13:48:46.294Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="茂茂">
-<meta name="twitter:description" content="学习记录所用">
+<meta name="twitter:title" content="OpenCL学习笔记系列《二》">
+<meta name="twitter:description" content="本系列博客是我最近学习OpenCL的一个总结。内容主要是对《OpenCL异构并行计算-原理、机制与优化实践》这本书的一个简单摘要。希望能和大家一起进步，如有谬误，还望大家多多指正。  1. 什么是OpenCL2008年，苹果公司向Khronos Group提交了一份关于跨平台计算框架的草案，该草案由苹果公司开发，并与AMD、IBM、Intel和NVIDIA公司合作逐步完善。这个跨平台计算框架就是O">
 
 
 
@@ -128,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/python/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/17/OpenCL学习笔记系列《二》/"/>
 
 
 
 
 
-  <title>标签: python | 茂茂</title>
+  <title>OpenCL学习笔记系列《二》 | 茂茂</title>
   
 
 
@@ -159,7 +161,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -307,72 +309,184 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h1>python<small>标签</small>
-      </h1>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/20/python源码剖析第一章笔记/" itemprop="url">
-              
-                <span itemprop="name">python源码剖析第一章笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-20T14:54:44+08:00"
-              content="2018-02-20" >
-          02-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/20/python源码剖析第零章笔记/" itemprop="url">
-              
-                <span itemprop="name">python源码剖析第零章笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-20T13:03:46+08:00"
-              content="2018-02-20" >
-          02-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/17/OpenCL学习笔记系列《二》/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="marlon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/user_img/marlon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="茂茂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">OpenCL学习笔记系列《二》</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-17T21:30:54+08:00">
+                2018-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/《并行计算》/" itemprop="url" rel="index">
+                    <span itemprop="name">《并行计算》</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2018/08/17/OpenCL学习笔记系列《二》/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <font color="#dd0000"><strong>本系列博客是我最近学习OpenCL的一个总结。内容主要是对《OpenCL异构并行计算-原理、机制与优化实践》这本书的一个简单摘要。希望能和大家一起进步，如有谬误，还望大家多多指正。</strong></font>
+
+<h2 id="1-什么是OpenCL"><a href="#1-什么是OpenCL" class="headerlink" title="1. 什么是OpenCL"></a>1. 什么是OpenCL</h2><p>2008年，苹果公司向Khronos Group提交了一份关于跨平台计算框架的草案，该草案由苹果公司开发，并与AMD、IBM、Intel和NVIDIA公司合作逐步完善。这个跨平台计算框架就是OpenCL（Open Computing Language，开放计算语言）。</p>
+<p>OpenCL是一个异构并行计算平台编写程序的工业标准，磁易购计算平台可映射到CPU、GPU、DSP和FPGA等计算设备。OpenCL提供了底层硬件结构的抽象模型，旨在提供一个通用的开放API，既减轻开发人员的编程难度，又让开发人员能够写出高效可移植代码。</p>
+<p>为了描述OpenCL设计的核心，Khrinis Group将OpenCL异构并行计算架构划分为<font color="#dd0000"><strong>平台模型（platform model）</strong></font>、<font color="#dd0000"><strong>存储器模型（platform model）</strong></font>、<font color="#dd0000"><strong>执行模型（platform model）</strong></font>和<font color="#dd0000"><strong>编程模型（platform model）</strong></font>。下面将分别对其进行讲解。</p>
+<h2 id="2-OpenCL平台模型"><a href="#2-OpenCL平台模型" class="headerlink" title="2. OpenCL平台模型"></a>2. OpenCL平台模型</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/并行计算/" rel="tag"># 并行计算</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/17/OpenCL学习笔记系列《一》/" rel="next" title="OpenCL学习笔记系列《一》">
+                <i class="fa fa-chevron-left"></i> OpenCL学习笔记系列《一》
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -380,6 +494,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
 
         </div>
         
@@ -399,8 +519,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/user_img/marlon.jpg"
@@ -473,6 +602,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是OpenCL"><span class="nav-text">1. 什么是OpenCL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-OpenCL平台模型"><span class="nav-text">2. OpenCL平台模型</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -593,10 +738,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
